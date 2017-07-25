@@ -1,0 +1,112 @@
+<head>
+	<meta charset="utf-8">
+	<title>Aaron Blumenfeld</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Aaron Blumenfeld">
+	<meta name="author" content="Aaron Blumenfeld">
+
+	<link href="../css/bootstrap.css" rel="stylesheet">
+	<style>
+		body {
+			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+		}
+		* {
+		   font-size: 16px;
+		}
+	</style>
+	<link href="../css/bootstrap-responsive.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		<a class="brand" href="http://www.aaronblumenfeld.com">Aaron Blumenfeld</a>
+			<div class="nav-collapse collapse">
+				<ul class="nav">
+					<li><a href="http://www.aaronblumenfeld.com">Home</a></li>
+					<li class="active"><a href="../sunny">Sunny</a></li>
+					<li><a href="mailto:me@aaronblumenfeld.com">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+
+<h4>What episode of Sunny should I watch?</h4>
+
+<script src="episodes.js"></script>
+<script src="findEp.js"></script>
+
+<script type="text/javascript">
+	var d = new Date();
+	var now = d.getTime() - d.getTimezoneOffset() * 60000;
+	var ep = closestEp(now);
+	document.write("Season " + ep[0] + ", Ep. " + ep[1] + ": " + ep[2]);
+</script>
+
+<hr>
+
+<div ng-app="app" ng-controller="ctrl">
+
+<h4>What if I want to watch an episode later? Which episode should I watch on
+
+<select ng-model="day">
+  <option value="Sunday">Sunday</option>
+  <option value="Monday">Monday</option>
+  <option value="Tuesday">Tuesday</option>
+  <option value="Wednesday">Wednesday</option>
+  <option value="Thursday">Thursday</option>
+  <option value="Friday">Friday</option>
+  <option value="Saturday">Saturday</option>
+</select>
+
+at <input type="text" ng-model="h"> : <input type = "text" ng-model="m">
+
+<select ng-model="pm">
+  <option value="AM">AM</option>
+  <option value="PM" selected>PM</option>
+</select>
+
+<button ng-click="futureEp()">?</button></h4>
+
+<div id="a"></div>
+
+</div>
+
+<script type="text/javascript">
+var app = angular.module('app', []);
+app.controller('ctrl', function($scope) {
+    $scope.day = "Tuesday";
+    $scope.h = 11;
+    $scope.m = 15;
+    $scope.pm = "AM";
+
+    $scope.futureEp = function() {
+    	var temp = 0;
+    	if($scope.pm === "PM") {
+    		temp = 12;
+    	}
+    	var time = dayOffset($scope.day)*(week/7) + (parseInt($scope.h)+temp)*hour + parseInt($scope.m)*minute;
+		var futureEp = closestEp(time);
+		document.getElementById('a').innerHTML = "Season " + futureEp[0] + ", Ep. " + futureEp[1] + ": " + futureEp[2];
+    }
+});
+</script>
+
+<hr>
+
+This application is rather contradictory to the mission of this website as described on the <a href="..">home page</a>.
+The web designer will attempt to think of a way to alleviate this transgression.
+
+</div>
+</body>

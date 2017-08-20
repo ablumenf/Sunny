@@ -134,7 +134,6 @@ season7.push({title: "The High School Reunion Part 2: The Gang's Revenge", time:
 h = randomInt(20, 22);
 m = randomInt(0, 60);
 season7[12].time = friday + h*hour + m*minute;
-console.log(season7[12]);
 episodes.push(season7);
 
 var season8 = [];

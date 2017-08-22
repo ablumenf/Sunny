@@ -5,7 +5,7 @@ function closestEp(time) {
 	var count = 1;
 	for(var i = 0; i < episodes.length; i++) {
 		for(var j = 0; j < episodes[i].length; j++) {
-			if(i == 0 && j == 0) {
+			if(i === 0 && j === 0) {
 				continue;
 			}
 			if(Math.abs(time - episodes[i][j].time) % week < Math.abs(time - closest.time) % week) {
@@ -15,7 +15,7 @@ function closestEp(time) {
 				rval[2] = closest.title;
 				count = 1;
 			}
-			if(Math.abs(time - episodes[i][j].time) % week == Math.abs(time - closest.time) % week) {
+			if(Math.abs(time - episodes[i][j].time) % week === Math.abs(time - closest.time) % week) {
 				count++;
 				random = Math.random();
 				if(random < 1/count) {

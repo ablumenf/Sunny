@@ -1,7 +1,7 @@
 # When Is It Sunny?
 
 When Is It Sunny? <br>
-Last Updated: August 20, 2017 <br>
+Last Updated: August 22, 2017 <br>
 Author: Aaron Blumenfeld
 
 ## ABOUT:

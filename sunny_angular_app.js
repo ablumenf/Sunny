@@ -1,46 +1,10 @@
-function badInput(tokenizedTime) {
-	if(isNaN(parseInt(tokenizedTime[0])) || isNaN(parseInt(tokenizedTime[1]))) {
-		return true;
-	}
-
-	var hour = Number(tokenizedTime[0]);
-	if(!Number.isInteger(hour) || hour < 1 || hour > 12) {
-		return true;
-	}
-
-	var minute = Number(tokenizedTime[1]);
-	if(!Number.isInteger(minute) || minute < 0 || minute > 59) {
-		return true;
-	}
-
-	return false;
-}
-
-// function randomInt(min, max) gives random in [min, max)
-function randomTime() {
-	var randomHour = randomInt(1, 13);
-	var randomMinute = randomInt(0, 60);
-	if(randomMinute < 10) randomMinute = "0" + randomMinute;
-	return randomHour + ":" + randomMinute;
-}
-
-function randomDay(n) {
-	n = n % 7; // just in case
-	days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	return days[n];
-}
-
 var app = angular.module('app', []);
 app.controller('ctrl', function($scope) {
+	/* find nearest episode */
+	
 	$scope.day = "Tuesday";
 	$scope.time = "11:15";
 	$scope.pm = "AM";
-
-	const searches = ["mac kills dad", "the worst bar", "anti social", "family fight", "serial killer", "home makeover",
-	"frank intervention", "gang rivalry", "king rats", "mac dennis timeshare", "gang squashes beef", "group dates", "ass kickers united",
-	"frank falls window", "trial of century", "water park", "wolf cola", "hero or hate", "gang tends bar", "cricket"];
-
-	$scope.search = searches[randomInt(0, searches.length)];
 
 	$scope.futureEp = function() {
 		var tokenizedTime = $scope.time.split(":");
@@ -68,11 +32,19 @@ app.controller('ctrl', function($scope) {
 		document.getElementById('futureEpText').innerHTML = "Season " + futureEp[0] + ", Ep. " + futureEp[1] + ": <span class='blueText font-weight-bold'>" + futureEp[2] + "</span>";
 	};
 
+	/* search engine */
+
+	const searches = ["mac kills dad", "the worst bar", "anti social", "family fight", "serial killer", "home makeover",
+	"frank intervention", "gang rivalry", "king rats", "mac dennis timeshare", "gang squashes beef", "group dates", "ass kickers united",
+	"frank falls window", "trial of century", "water park", "wolf cola", "hero or hate", "gang tends bar", "cricket"];
+
+	$scope.search = searches[randomInt(0, searches.length)];
+
 	$scope.showTopK = "false";
 
 	$scope.searchEp = function() {
 		try {
-			const episode = findEp($scope.search);
+			const episode = searchEpisodes($scope.search);
 			deleteSimilarityList();
 			if($scope.showTopK !== "true") {
 				document.getElementById('searchText').innerHTML = "Season " + episode.season + ", Ep. " + episode.episode
@@ -100,6 +72,8 @@ app.controller('ctrl', function($scope) {
 				.remove();
 	}
 
+	/* return multiple episodes functionality, instead of just 1 */
+
 	function renderSimilarityList(queryString) {
 		const k = 10;
 
@@ -124,7 +98,6 @@ app.controller('ctrl', function($scope) {
 	}
 	
 	function deleteSimilarityList() {
-		d3.select("#tableheader").selectAll("*").remove();
 		d3.select("#values").selectAll("*").remove(); // clear table
 	}
 });

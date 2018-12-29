@@ -1,0 +1,36 @@
+.dropdownpicker {
+	height: 30px;
+}
+
+.myTextbox {
+	height: 38px;
+	width: 70px;
+}
+
+.button {
+	width: 50px;
+	height: 36px;
+	position: relative;
+	top: -3px;
+}
+
+.blueText {
+	color: #007bff;
+	font-weight: bold;
+}
+
+.displayOverride {
+	display: inline;
+}
+
+.searchTextbox {
+	height: 38px;
+	width: 400px;
+}
+
+.searchButton {
+	width: 100px;
+	height: 36px;
+	position: relative;
+	top: -3px;
+}

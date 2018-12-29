@@ -1,10 +1,10 @@
 function closestEp(time) {
-	rval = [1, 1, "The Gang Gets Racist"];
+	let rval = [1, 1, "The Gang Gets Racist"];
 	time = time % week;
-	var closest = episodes[0][0];
-	var count = 1;
-	for(var i = 0; i < episodes.length; i++) {
-		for(var j = 0; j < episodes[i].length; j++) {
+	let closest = episodes[0][0];
+	let count = 1;
+	for(let i = 0; i < episodes.length; i++) {
+		for(let j = 0; j < episodes[i].length; j++) {
 			if(i === 0 && j === 0) {
 				continue;
 			}
@@ -31,7 +31,7 @@ function closestEp(time) {
 }
 
 function dayOffset(day) {
-	var rval = 3;
+	let rval = 3;
 	if(day === "Thursday") rval = 0;
 	if(day === "Friday") rval = 1;
 	if(day === "Saturday") rval = 2;

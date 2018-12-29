@@ -1,112 +1,169 @@
-<head>
-	<meta charset="utf-8">
-	<title>Aaron Blumenfeld</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Aaron Blumenfeld">
-	<meta name="author" content="Aaron Blumenfeld">
+<!DOCTYPE html>
+<html lang="en">
 
-	<link href="../css/bootstrap.css" rel="stylesheet">
-	<style>
-		body {
-			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-		}
-		* {
-		   font-size: 16px;
-		}
-	</style>
-	<link href="../css/bootstrap-responsive.css" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-</head>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
 
-<body>
+    	<title>Sunny</title>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="navbar-inner">
-		<div class="container">
-			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		<a class="brand" href="http://www.aaronblumenfeld.com">Aaron Blumenfeld</a>
-			<div class="nav-collapse collapse">
-				<ul class="nav">
-					<li><a href="http://www.aaronblumenfeld.com">Home</a></li>
-					<li class="active"><a href="../sunny">Sunny</a></li>
-					<li><a href="mailto:me@aaronblumenfeld.com">Contact</a></li>
-				</ul>
+    	<link href="../css/bootstrap.min.css" rel="stylesheet">
+    	<link href="../css/ab.css" rel="stylesheet">
+    	<link href="sunny.css" rel="stylesheet">
+    	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.2/d3.min.js"></script>
+    	<script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
+	</head>
+
+  <body>
+
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+			<div class="container">
+				<a class="navbar-brand" href="http://www.aaronblumenfeld.com">Aaron Blumenfeld</a>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-2">
+						<li class="nav-item">
+							<a class="nav-link" href="http://www.aaronblumenfeld.com">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../sunny">Sunny</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../kmeans">k-Means</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../graph-vis">Graph Vis</a>
+						</li>
+						<li class="dropdown">
+							<a class="nav-link dropdown-toggle" href="../crypto" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+								Crypto
+							</a>
+							<div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="../crypto/numtheory">Number Theory</a>
+								<a class="dropdown-item" href="../crypto/rsa">RSA</a>
+								<a class="dropdown-item" href="../crypto/dl">Discrete Logs</a>
+								<a class="dropdown-item" href="../crypto/ecc">Elliptic Curve Cryptography</a>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../teaching">Teaching</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../contact">Contact</a>
+						</li>
+					</ul>
+				</div>
 			</div>
+		</nav>
+
+		<div class="container mt-3">
+
+			<h4>What episode of Sunny should I watch?</h4>
+
+			<script src="episodes.js"></script>
+			<script src="findEp.js"></script>
+			<script src="searchEngine.js"></script>
+
+			<script type="text/javascript">
+				var d = new Date();
+				var now = d.getTime() - d.getTimezoneOffset() * 60000;
+				var ep = closestEp(now);
+				document.write("<div class='mt-3'>Season " + ep[0] + ", Ep. " + ep[1] + ": <span class='blueText'>" + ep[2] + "</span></div>");
+			</script>
+
+			<hr>
+
+			<div ng-app="app" ng-controller="ctrl">
+
+				<h4>What if I want to watch an episode later? Which episode should I watch on</h4>
+
+				<div class="mt-4">
+
+					<select ng-model="day" class="dropdownpicker form-control displayOverride" ng-style="{'width' : '150px'}">
+					  <option value="Sunday">Sunday</option>
+					  <option value="Monday">Monday</option>
+					  <option value="Tuesday">Tuesday</option>
+					  <option value="Wednesday">Wednesday</option>
+					  <option value="Thursday">Thursday</option>
+					  <option value="Friday">Friday</option>
+					  <option value="Saturday">Saturday</option>
+					</select>
+
+					at
+
+					<input type="text" class="form-control myTextbox displayOverride" ng-model="time"/>
+
+					<select ng-model="pm" ng-style="{'width' : '80px'}" class="dropdownpicker form-control displayOverride">
+					  <option value="AM">AM</option>
+					  <option value="PM" selected>PM</option>
+					</select>
+
+					<button class="btn btn-success button" ng-click="futureEp()">?</button>
+				</div>
+
+				<div id="futureEpText" class="mt-2"></div>
+
+				<hr>
+
+				<h4>Look Up Episode by Title</h4>
+
+				<div class="mt-4">
+
+					<input type="text" class="form-control displayOverride col-lg-6 col-md-6 col-sm-8 col-8" ng-model="search"/>
+
+					<button class="btn btn-success searchButton ml-5 col-lg-2 col-md-2 col-sm-2 col-2" ng-click="searchEp()">Search</button>
+					<select ng-model="showTopK" ng-style="{'width' : '170px'}" class="ml-2 dropdownpicker form-control displayOverride">
+						<option value="false" selected>One Result</option>
+						<option value="true">Multiple Results</option>
+					</select>
+
+				</div>
+
+				<div id="searchText" class="mt-2"></div>
+				<table class="table table-borderless table-dark table-hover" style="width: 500px; margin-top: 5px;">
+					<tbody id="values"></tbody>
+				</table>
+				<div id="searchAlert" class="mt-2"></div>
+
+			</div>
+
+			<div id="accordion" class="mt-3">
+				<div class="card">
+					<div class="card-header">
+						<h5 class="mb-0">
+							<button class="btn btn-link" data-toggle="collapse" data-target="#search-details" aria-expanded="true" aria-controls="search-details">
+								Help
+							</button>
+						</h5>
+					</div>
+
+					<div id="search-details" class="collapse" data-parent="#accordion">
+						<div class="card-body">
+							<p>Punctuation doesn't matter (mostly). Searching for "anti social" or "anti-social" will get you The ANTI-Social Network, but "antisocial"
+							comes back with nothing. Searching for "dennis" gives Dennis Gets Divorced, even if you meant Mac and Dennis Buy a Timeshare. In this situation, the
+							search engine skews toward a shorter title, and you should be more specific, such as "dennis timeshare".</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script src="sunny_angular_app.js"></script>
+
+			<hr>
+
+			<p>This application is rather contradictory to the mission of this website as described on the <a href="..">home page</a>.
+			The web designer will attempt to think of a way to alleviate this transgression.</p>
+
 		</div>
-	</div>
-</div>
 
-<div class="container">
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/bootstrap.bundle.min.js"></script>
 
-<h4>What episode of Sunny should I watch?</h4>
+  </body>
 
-<script src="episodes.js"></script>
-<script src="findEp.js"></script>
-
-<script type="text/javascript">
-	var d = new Date();
-	var now = d.getTime() - d.getTimezoneOffset() * 60000;
-	var ep = closestEp(now);
-	document.write("Season " + ep[0] + ", Ep. " + ep[1] + ": " + ep[2]);
-</script>
-
-<hr>
-
-<div ng-app="app" ng-controller="ctrl">
-
-<h4>What if I want to watch an episode later? Which episode should I watch on
-
-<select ng-model="day">
-  <option value="Sunday">Sunday</option>
-  <option value="Monday">Monday</option>
-  <option value="Tuesday">Tuesday</option>
-  <option value="Wednesday">Wednesday</option>
-  <option value="Thursday">Thursday</option>
-  <option value="Friday">Friday</option>
-  <option value="Saturday">Saturday</option>
-</select>
-
-at <input type="text" ng-model="h" ng-style="{'width' : '50px'}"> : <input type = "text" ng-model="m" ng-style="{'width' : '50px'}">
-
-<select ng-model="pm" ng-style="{'width' : '80px'}">
-  <option value="AM">AM</option>
-  <option value="PM" selected>PM</option>
-</select>
-
-<button ng-click="futureEp()">?</button></h4>
-
-<div id="a"></div>
-
-</div>
-
-<script type="text/javascript">
-var app = angular.module('app', []);
-app.controller('ctrl', function($scope) {
-    $scope.day = "Tuesday";
-    $scope.h = 11;
-    $scope.m = 15;
-    $scope.pm = "AM";
-
-    $scope.futureEp = function() {
-    	var temp = 0;
-    	if($scope.pm === "PM") {
-    		temp = 12;
-    	}
-    	var time = dayOffset($scope.day)*(week/7) + (parseInt($scope.h)+temp)*hour + parseInt($scope.m)*minute;
-		var futureEp = closestEp(time);
-		document.getElementById('a').innerHTML = "Season " + futureEp[0] + ", Ep. " + futureEp[1] + ": " + futureEp[2];
-    }
-});
-</script>
-
-<hr>
-
-This application is rather contradictory to the mission of this website as described on the <a href="..">home page</a>.
-The web designer will attempt to think of a way to alleviate this transgression.
-
-</div>
-</body>
+</html>

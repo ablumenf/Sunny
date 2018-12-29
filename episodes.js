@@ -1,14 +1,14 @@
 /* January 1, 1970 = Thursday */
-var sunday = 86400000*3;
-var monday = 86400000*4;
-var tuesday = 86400000*5;
-var wednesday = 86400000*6;
-var thursday = 0;
-var friday = 86400000;
-var saturday = 86400000*2;
-var hour = 3600000;
-var minute = 60000;
-var week = 604800000;
+const sunday = 86400000*3;
+const monday = 86400000*4;
+const tuesday = 86400000*5;
+const wednesday = 86400000*6;
+const thursday = 0;
+const friday = 86400000;
+const saturday = 86400000*2;
+const hour = 3600000;
+const minute = 60000;
+const week = 604800000;
 
 function randomInt(min, max) { // random in [min, max)
 	min = Math.ceil(min);
@@ -16,9 +16,9 @@ function randomInt(min, max) { // random in [min, max)
 	return Math.floor(Math.random() * (max - min)) + min;
 }
 
-var episodes = [];
+let episodes = [];
 
-var season1 = [];
+let season1 = [];
 season1.push({title: "The Gang Gets Racist", time: thursday+45*minute});
 season1.push({title: "Charlie Wants an Abortion", time: tuesday+11*hour+45*minute});
 season1.push({title: "Underage Drinking: A National Concern", time: friday+21*hour+45*minute});
@@ -28,7 +28,7 @@ season1.push({title: "The Gang Finds A Dead Guy", time: friday+10*hour+25*minute
 season1.push({title: "Charlie Gets Molested", time: monday+11*hour+15*minute});
 episodes.push(season1);
 
-var season2 = [];
+let season2 = [];
 season2.push({title: "Charlie Gets Crippled", time: monday+22*hour+15*minute});
 season2.push({title: "The Gang Goes Jihad", time: monday+15*hour+30*minute});
 season2.push({title: "Dennis And Dee Go On Welfare", time: wednesday+16*hour+30*minute});
@@ -41,7 +41,7 @@ season2.push({title: "Charlie Goes America All Over Everybody's Ass", time: satu
 season2.push({title: "Dennis And Dee Get A New Dad", time: monday+8*hour});
 episodes.push(season2);
 
-var season3 = [];
+let season3 = [];
 season3.push({title: "The Gang Finds a Dumpster Baby", time: wednesday+16*hour+30*minute});
 season3.push({title: "The Gang Gets Invincible", time: wednesday+10*hour+30*minute});
 season3.push({title: "Dennis and Dee's Mom Is Dead", time: monday+12*hour});
@@ -58,13 +58,13 @@ season3.push({title: "The Gang Gets Whacked (Part 2)", time: monday+14*hour+30*m
 season3.push({title: "Bums: Making a Mess All Over the City", time: monday+10*hour+15*minute});
 season3.push({title: "The Gang Dances Their Asses Off", time: saturday+13*hour+15*minute});
 
-var day = randomInt(-2, 1);
-var h = randomInt(7, 20);
-var m = randomInt(0, 60);
+let day = randomInt(-2, 1);
+let h = randomInt(7, 20);
+let m = randomInt(0, 60);
 season3[12].time = ((7+day)*week/7 + h*hour + m*minute) % week;
 episodes.push(season3);
 
-var season4 = [];
+let season4 = [];
 season4.push({title: "Mac and Dennis: Manhunters", time: wednesday+15*hour+30*minute});
 season4.push({title: "The Gang Solves the Gas Crisis", time: monday+10*hour+30*minute});
 season4.push({title: "America's Next Top Paddy's Billboard Model Contest", time: monday+9*hour+30*minute});
@@ -85,7 +85,7 @@ m = randomInt(0, 60);
 season4[5].time = ((7+day)*week/7 + h*hour + m*minute) % week;
 episodes.push(season4);
 
-var season5 = [];
+let season5 = [];
 season5.push({title: "The Gang Exploits the Mortgage Crisis", time: tuesday+11*hour+30*minute});
 season5.push({title: "The Gang Hits the Road", time: tuesday+11*hour});
 season5.push({title: "The Great Recession", time: tuesday+11*hour});
@@ -100,7 +100,7 @@ season5.push({title: "Mac and Charlie Write a Movie", time: thursday+13*hour+30*
 season5.push({title: "The Gang Reignites the Rivalry", time: tuesday+20*hour+17*minute});
 episodes.push(season5);
 
-var season6 = [];
+let season6 = [];
 season6.push({title: "Mac Fights Gay Marriage", time: thursday+11*hour});
 season6.push({title: "Dennis Gets Divorced", time: monday+7*hour+30*minute});
 season6.push({title: "The Gang Buys a Boat", time: saturday+10*hour});
@@ -116,7 +116,7 @@ season6.push({title: "Dee Gives Birth", time: friday+9*hour+30*minute});
 season6.push({title: "A Very Sunny Christmas", time: thursday+9*hour});
 episodes.push(season6);
 
-var season7 = [];
+let season7 = [];
 season7.push({title: "Frank's Pretty Woman", time: monday+11*hour+30*minute});
 season7.push({title: "The Gang Goes to the Jersey Shore", time: friday+10*hour+30*minute});
 season7.push({title: "Frank Reynolds' Little Beauties", time: saturday+12*hour});
@@ -136,7 +136,7 @@ m = randomInt(0, 60);
 season7[12].time = friday + h*hour + m*minute;
 episodes.push(season7);
 
-var season8 = [];
+let season8 = [];
 season8.push({title: "Pop-Pop: The Final Solution", time: tuesday+10*hour+45*minute});
 season8.push({title: "The Gang Recycles Their Trash", time: monday+11*hour+40*minute});
 season8.push({title: "The Maureen Ponderosa Wedding Massacre", time: friday+22*hour});
@@ -149,7 +149,7 @@ season8.push({title: "The Gang Dines Out", time: saturday+8*hour*17*minute});
 season8.push({title: "Reynolds vs. Reynolds: The Cereal Defense", time: friday+10*hour+19*minute});
 episodes.push(season8);
 
-var season9 = [];
+let season9 = [];
 season9.push({title: "The Gang Broke Dee", time: wednesday+12*hour+15*minute});
 season9.push({title: "Gun Fever Too: Still Hot", time: tuesday+9*hour+35*minute});
 season9.push({title: "The Gang Tries Desperately to Win an Award", time: friday+14*hour+30*minute});
@@ -167,7 +167,7 @@ m = randomInt(0, 60);
 season9[8].time = ((7+day)*week/7 + h*hour + m*minute) % week;
 episodes.push(season9);
 
-var season10 = [];
+let season10 = [];
 season10.push({title: "The Gang Beats Boggs", time: thursday+9*hour+30*minute});
 season10.push({title: "The Gang Group Dates", time: tuesday+11*hour});
 season10.push({title: "Psycho Pete Returns", time: monday+15*hour});
@@ -180,7 +180,7 @@ season10.push({title: "Frank Retires", time: wednesday+10*hour+30*minute});
 season10.push({title: "Ass Kickers United: Mac and Charlie Join a Cult", time: wednesday+10*hour});
 episodes.push(season10);
 
-var season11 = [];
+let season11 = [];
 season11.push({title: "Chardee MacDennis 2: Electric Boogaloo", time: monday+10*hour+20*minute});
 season11.push({title: "Frank Falls Out the Window", time: wednesday+12*hour+10*minute});
 season11.push({title: "The Gang Hits the Slopes", time: friday+9*hour+30*minute});
@@ -196,11 +196,11 @@ day = randomInt(-3, 2);
 h = randomInt(9, 18);
 m = randomInt(0, 60);
 season11[8].time = ((7+day)*week/7 + h*hour + m*minute) % week;
-var offset = 1000*60*randomInt(0, 60);
+let offset = 1000*60*randomInt(0, 60);
 season11[9].time = season11[8].time + offset;
 episodes.push(season11);
 
-var season12 = [];
+let season12 = [];
 season12.push({title: "The Gang Turns Black", time: friday+21*hour+15*minute});
 season12.push({title: "The Gang Goes To A Water Park", time: saturday+9*hour+58*minute});
 season12.push({title: "Old Lady House: A Situational Comedy", time: tuesday+12*hour});
@@ -212,3 +212,16 @@ season12.push({title: "The Gang Tends Bar", time: tuesday+11*hour});
 season12.push({title: "A Cricket's Tale", time: sunday+15*hour+10*minute});
 season12.push({title: "Dennis' Double Life", time: thursday+11*hour+30*minute});
 episodes.push(season12);
+
+let season13 = [];
+season13.push({title: "The Gang Makes Paddy's Great Again", time: thursday+21*hour+30*minute});
+season13.push({title: "The Gang Escapes", time: saturday+14*hour+30*minute});
+season13.push({title: "The Gang Beats Boggs: Ladies Reboot", time: thursday+12*hour});
+season13.push({title: "Time's Up For The Gang", time: saturday+10*hour});
+season13.push({title: "The Gang Gets New Wheels", time: tuesday+15*hour+15*minute});
+season13.push({title: "The Gang Solves the Bathroom Problem", time:friday+2*hour});
+season13.push({title: "The Gang Does a Clip Show", time:tuesday+14*hour});
+season13.push({title: "Charlie's Home Alone", time:saturday+14*hour+40*minute});
+season13.push({title: "The Gang Wins the Big Game", time:saturday+14*hour+40*minute});
+season13.push({title: "Mac Finds His Pride", time:saturday+10*hour+15*minute});
+episodes.push(season13);

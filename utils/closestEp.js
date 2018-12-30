@@ -16,6 +16,12 @@ function badInput(tokenizedTime) {
 	return false;
 }
 
+function randomInt(min, max) { // random in [min, max)
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min)) + min;
+}
+
 // function randomInt(min, max) gives random in [min, max)
 function randomTime() {
 	var randomHour = randomInt(1, 13);

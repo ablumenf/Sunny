@@ -1,6 +1,6 @@
 function stringToSet(str) {
     const lowerCaseArr = str.toLowerCase().split(" ");
-    const stopWords = new Set(["the", "a", "an"]);
+    const stopWords = new Set(["the", "a", "an", "of"]);
     return new Set(lowerCaseArr.filter(w => w.length > 0 && !stopWords.has(w)).map(w => lookupWord(w)));
 }
 

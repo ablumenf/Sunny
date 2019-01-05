@@ -90,7 +90,7 @@
 
 				<div class="mt-4">
 
-					<select ng-model="day" class="dropdownpicker form-control displayOverride" ng-style="{'width' : '150px'}">
+					<select ng-model="day" class="dropdownpicker form-control d-inline" ng-style="{'width' : '150px'}">
 					  <option value="Sunday">Sunday</option>
 					  <option value="Monday">Monday</option>
 					  <option value="Tuesday">Tuesday</option>
@@ -102,9 +102,9 @@
 
 					at
 
-					<input type="text" class="form-control myTextbox displayOverride" ng-model="time"/>
+					<input type="text" class="form-control myTextbox d-inline" ng-model="time"/>
 
-					<select ng-model="pm" ng-style="{'width' : '80px'}" class="dropdownpicker form-control displayOverride">
+					<select ng-model="pm" ng-style="{'width' : '80px'}" class="dropdownpicker form-control d-inline">
 					  <option value="AM">AM</option>
 					  <option value="PM" selected>PM</option>
 					</select>
@@ -120,10 +120,10 @@
 
 				<div class="mt-4">
 
-					<input type="text" class="form-control displayOverride col-lg-6 col-md-6 col-sm-8 col-8" ng-model="search"/>
+					<input type="text" class="form-control d-inline col-lg-6 col-md-6 col-sm-8 col-8" ng-model="search"/>
 
-					<button class="btn btn-success searchButton ml-5 col-lg-2 col-md-2 col-sm-2 col-2" ng-click="searchEp()">Search</button>
-					<select ng-model="showTopK" ng-style="{'width' : '170px'}" class="ml-2 dropdownpicker form-control displayOverride">
+					<button class="btn btn-success searchButton mx-2 col-lg-2 col-md-2 col-sm-2 col-2" ng-click="searchEp()">Search</button>
+					<select ng-model="showTopK" ng-style="{'min-width' : '170px'}" class="mt-1 col-lg-2 col-md-2 col-sm-2 col-2 dropdownpicker form-control d-inline">
 						<option value="false" selected>One Result</option>
 						<option value="true">Multiple Results</option>
 					</select>

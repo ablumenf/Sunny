@@ -1,13 +1,11 @@
 const start = Date.now();
 // pre-compute NLP stuff to hide NLP's really bad latency
 // return object so we can return top k list without showing nlp_reduce results
-const nlp_episodes = episodes.map((season, i) => season.map((ep, j) => {
-	return {
+const nlp_episodes = episodes.map((season, i) => season.map((ep, j) => ({
 		title: nlp_reduce(ep.title),
 		season: i,
 		episode: j
-	};
-}));
+})));
 const end = Date.now();
 console.log("If you're here, you've just learned that doing the NLP pre-computations for the search engine on this page took " + ((end - start)/1000) + " seconds!");
 

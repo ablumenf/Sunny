@@ -219,3 +219,16 @@ season13.push({title: "Charlie's Home Alone", time:saturday+14*hour+40*minute});
 season13.push({title: "The Gang Wins the Big Game", time:saturday+14*hour+40*minute});
 season13.push({title: "Mac Finds His Pride", time:saturday+10*hour+15*minute});
 episodes.push(season13);
+
+let season14 = [];
+season14.push({title: "The Gang Gets Romantic", time: thursday+12*hour});
+season14.push({title: "Thunder Gun 4: Maximum Cool", time: tuesday+14*hour});
+season14.push({title: "Dee Day", time: thursday+11*hour+57*minute});
+season14.push({title: "The Gang Chokes", time: saturday+20*hour});
+season14.push({title: "The Gang Texts", time: saturday+10*hour});
+season14.push({title: "The Janitor Always Mops Twice", time:thursday+22*hour});
+season14.push({title: "The Gang Solves Global Warming", time:monday+13*hour});
+season14.push({title: "Paddy's Has a Jumper", time:wednesday+11*hour});
+season14.push({title: "A Woman's Right to Chop", time:friday+13*hour+15*minute});
+season14.push({title: "Waiting for Big Mo", time:saturday+13*hour+45*minute});
+episodes.push(season14);
